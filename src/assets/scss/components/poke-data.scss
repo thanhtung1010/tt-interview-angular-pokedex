@@ -1,0 +1,11 @@
+&-table {
+
+  &-head_content {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    background-color: #{$tableHeaderBackgroundColor};
+  }
+}

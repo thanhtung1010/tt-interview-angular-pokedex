@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { PageLayoutComponent } from './components';
 
 @Component({
-  selector: 'app-root',
+  selector: 'tt-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [
+    RouterOutlet,
+    PageLayoutComponent,
+  ],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'tt-interview-angular-pokedex';
+  title = 'POKÉDEX';
 }
