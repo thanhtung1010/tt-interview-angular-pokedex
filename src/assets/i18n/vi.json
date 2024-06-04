@@ -1,3 +1,14 @@
 {
-  "HEADER": "POKÉDEX"
+  "HEADER": "POKÉDEX",
+  "TABLE_HEADER": {
+    "AVATAR": "Avatar",
+    "NAME": "Name",
+    "TOTAL": "Total",
+    "HP": "HP",
+    "DEFENSE": "Defense",
+    "SP_ATK": "SP_ATK",
+    "SP_DEF": "SP_ATK",
+    "SPEED": "Speed",
+    "ATTACK": "Attack"
+  }
 }

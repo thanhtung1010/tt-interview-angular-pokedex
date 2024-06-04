@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PageLayoutComponent } from './components';
+import { PageLayoutComponent, PokeDataComponent } from './components';
+import { IPokeItem } from './interfaces';
 
 @Component({
   selector: 'tt-root',
@@ -8,9 +9,13 @@ import { PageLayoutComponent } from './components';
   imports: [
     RouterOutlet,
     PageLayoutComponent,
+    PokeDataComponent,
   ],
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'POKÉDEX';
+  data = {
+    pokeList: [] as IPokeItem[],
+  };
+  constructor() {}
 }

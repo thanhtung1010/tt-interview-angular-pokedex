@@ -1,4 +1,24 @@
 <table class="tt-table">
-  <thead class="tt-table-head"></thead>
-  <tbody class="tt-table-body"></tbody>
+  <thead class="tt-table-head">
+    <tr>
+      <ng-container *ngFor="let header of tableHeader">
+        <th [width]="header.width">{{ header.title | translate }}</th>
+      </ng-container>
+    </tr>
+  </thead>
+  <tbody class="tt-table-body">
+    <ng-container *ngFor="let pokeItem of data">
+      <tr>
+        <td>hehe</td>
+        <td>hehe</td>
+        <td>hehe</td>
+        <td>hehe</td>
+        <td>hehe</td>
+        <td>hehe</td>
+        <td>hehe</td>
+        <td>hehe</td>
+        <td>hehe</td>
+      </tr>
+    </ng-container>
+  </tbody>
 </table>
