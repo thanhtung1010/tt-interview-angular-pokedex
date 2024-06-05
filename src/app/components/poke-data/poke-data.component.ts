@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IPokeItem, ITableElement } from '../../interfaces';
-import { POKE_DATA_TYPE } from '../../enums/common.enum';
-import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { POKE_DATA_TYPE } from '../../enums/common.enum';
+import { IPokeItem, ITableElement } from '../../interfaces';
+import { AvatarPokeComponent } from '../avatar-poke/avatar-poke.component';
 
 @Component({
   selector: 'tt-poke-data',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     TranslateModule,
     CommonModule,
+    AvatarPokeComponent,
   ]
 })
 export class PokeDataComponent implements OnInit {

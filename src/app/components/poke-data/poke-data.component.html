@@ -9,15 +9,17 @@
   <tbody class="tt-table-body">
     <ng-container *ngFor="let pokeItem of data">
       <tr>
-        <td>hehe</td>
-        <td>hehe</td>
-        <td>hehe</td>
-        <td>hehe</td>
-        <td>hehe</td>
-        <td>hehe</td>
-        <td>hehe</td>
-        <td>hehe</td>
-        <td>hehe</td>
+        <td>
+          <tt-avatar-poke [id]="pokeItem.id" [name]="pokeItem.name"></tt-avatar-poke>
+        </td>
+        <td>{{pokeItem.name}}</td>
+        <td>{{pokeItem.total}}</td>
+        <td>{{pokeItem.hp}}</td>
+        <td>{{pokeItem.attack}}</td>
+        <td>{{pokeItem.defense}}</td>
+        <td>{{pokeItem.sp_atk}}</td>
+        <td>{{pokeItem.sp_def}}</td>
+        <td>{{pokeItem.speed}}</td>
       </tr>
     </ng-container>
   </tbody>

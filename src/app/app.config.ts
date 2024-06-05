@@ -5,12 +5,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from '../environments/environment';
+import { APIService } from './services/api.service';
 
 export function HTTPLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 export const appConfig: ApplicationConfig = {
   providers: [
+    APIService,
     provideRouter(routes),
     importProvidersFrom([
       HttpClientModule,
