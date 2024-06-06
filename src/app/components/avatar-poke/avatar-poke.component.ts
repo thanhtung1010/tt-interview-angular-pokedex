@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { POKE_API_URL } from '../../enums/api.enum';
 import { environment } from '../../../environments/environment';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'tt-avatar-poke',
@@ -9,13 +9,15 @@ import { NgOptimizedImage } from '@angular/common';
   standalone: true,
   imports: [
     NgOptimizedImage,
+    CommonModule,
   ]
 })
 export class AvatarPokeComponent implements OnInit {
   @Input({required: true}) id: string = '';
+  @Input() number: number | null = null;
   @Input() name: string = '';
-  @Input() width: string = '50';
-  @Input() height: string = '50';
+  @Input() width: string = '100';
+  @Input() height: string = '100';
 
   avatarUrl: string = '';
 

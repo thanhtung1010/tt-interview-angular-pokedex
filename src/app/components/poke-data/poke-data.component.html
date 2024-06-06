@@ -1,25 +1,31 @@
 <table class="tt-table">
   <thead class="tt-table-head">
     <tr>
-      <ng-container *ngFor="let header of tableHeader">
-        <th [width]="header.width">{{ header.title | translate }}</th>
+      <ng-container *ngFor="let header of tableHeader; let index = index">
+        <th [ngClass]="{'tt-table-head_sorting': header.sortOrder !== null}">
+          <tt-sort-header [header]="header" (headerChange)="onClickSortHeader(index, $event)"></tt-sort-header>
+        </th>
       </ng-container>
     </tr>
   </thead>
   <tbody class="tt-table-body">
     <ng-container *ngFor="let pokeItem of data">
       <tr>
-        <td>
-          <tt-avatar-poke [id]="pokeItem.id" [name]="pokeItem.name"></tt-avatar-poke>
+        <td class="tt-align-center">
+          <tt-avatar-poke [id]="pokeItem.id" [name]="pokeItem.name" [number]="pokeItem.number"></tt-avatar-poke>
         </td>
-        <td>{{pokeItem.name}}</td>
-        <td>{{pokeItem.total}}</td>
-        <td>{{pokeItem.hp}}</td>
-        <td>{{pokeItem.attack}}</td>
-        <td>{{pokeItem.defense}}</td>
-        <td>{{pokeItem.sp_atk}}</td>
-        <td>{{pokeItem.sp_def}}</td>
-        <td>{{pokeItem.speed}}</td>
+        <td>
+          <p class="tt-poke-name" (click)="onClickPokeItem(pokeItem)">
+            {{pokeItem.name}}
+          </p>
+        </td>
+        <td class="tt-align-right">{{pokeItem.total}}</td>
+        <td class="tt-align-right">{{pokeItem.hp}}</td>
+        <td class="tt-align-right">{{pokeItem.attack}}</td>
+        <td class="tt-align-right">{{pokeItem.defense}}</td>
+        <td class="tt-align-right">{{pokeItem.sp_atk}}</td>
+        <td class="tt-align-right">{{pokeItem.sp_def}}</td>
+        <td class="tt-align-right">{{pokeItem.speed}}</td>
       </tr>
     </ng-container>
   </tbody>

@@ -1,4 +1,9 @@
-<picture>
+<picture class="tt-poke-avatar">
   <source [srcset]="avatarUrl" [width]="width" [height]="height" type="img">
-  <img [ngSrc]="avatarUrl" [alt]="name" [width]="width" [height]="height" loading="lazy">
+
+  <ng-container *ngIf="number !== null">
+    <label for="poke-avatar">{{number}}.</label>
+  </ng-container>
+
+  <img id="poke-avatar" loading="lazy" [ngSrc]="avatarUrl" [alt]="name" [width]="width" [height]="height">
 </picture>

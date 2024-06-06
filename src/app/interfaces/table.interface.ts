@@ -22,13 +22,10 @@ export interface ITableElement<T> {
   value?: any;
   show?: boolean;
   notAllowHide?: boolean;
-  showCCOrAdmin?: boolean;
-  showBum?: boolean;
-  sortOrder?: string;
+  sortOrder: null | 'asc' | 'desc';
+  showSort: boolean;
   isHide?: boolean;
   isLock?: boolean;
-  country?: string;
-  separator?: string; // Specifies a string to separate each pair of adjacent elements of the array - fieldType = array
 }
 
 export interface ITableLayoutProps {

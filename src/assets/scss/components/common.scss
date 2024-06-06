@@ -1,0 +1,25 @@
+&-poke-name {
+  font-size: #{$labelSize};
+  font-weight: #{$tableHeaderWeight};
+  color: #{$blueColor};
+  cursor: pointer;
+}
+
+&-poke-avatar {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    font-size: #{$labelSize};
+    font-weight: #{$tableHeaderWeight};
+  }
+}
+
+&-sort-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

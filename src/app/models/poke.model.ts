@@ -1,7 +1,7 @@
 export class PokeParams {
   pageNumber: number = 1;
   pageSize: number = 10;
-  sort: string = '';
+  sort: string = 'number';
   name: string = '';
   generation: number | null = null;
   legendary: number | null = null;

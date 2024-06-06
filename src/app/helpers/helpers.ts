@@ -242,15 +242,26 @@ export class Helpers {
     return null;
   }
 
-  public static convertObjectToParams = (_obj: any) => {
+  public static convertObjectToParams = (_obj: any, removeUndefined?: boolean) => {
     if (_obj) {
       let str = "";
       // tslint:disable-next-line:forin
       for (const key in _obj) {
-        if (str !== "") {
-          str += "&";
+        const addParams = () => {
+          if (str !== "") {
+            str += "&";
+          }
+          str += key + "=" + encodeURIComponent(_obj[key]);
+        };
+        if (!removeUndefined) {
+          addParams();
+          continue;
         }
-        str += key + "=" + encodeURIComponent(_obj[key]);
+
+        if (removeUndefined && typeof _obj[key] !== 'undefined') {
+          addParams();
+          continue;
+        }
       }
       return str;
     } else {
