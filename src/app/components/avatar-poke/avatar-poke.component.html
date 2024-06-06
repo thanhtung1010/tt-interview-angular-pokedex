@@ -5,5 +5,5 @@
     <label for="poke-avatar">{{number}}.</label>
   </ng-container>
 
-  <img id="poke-avatar" loading="lazy" [ngSrc]="avatarUrl" [alt]="name" [width]="width" [height]="height">
+  <img id="poke-avatar" [ngSrc]="avatarUrl" [alt]="name" [width]="width" [height]="height" priority>
 </picture>

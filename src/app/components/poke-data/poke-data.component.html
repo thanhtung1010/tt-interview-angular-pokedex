@@ -1,3 +1,13 @@
+<section class="tt-filter">
+  <section class="tt-filter_wrap">
+    <label for="typeselect">Choose a type:</label>
+    <select id="typeselect" [(ngModel)]="params.type" (ngModelChange)="onSelectType($event)">
+      <ng-container *ngFor="let type of pokeTypes">
+        <option [value]="type.id">{{type.name}}</option>
+      </ng-container>
+    </select>
+  </section>
+</section>
 <table class="tt-table">
   <thead class="tt-table-head">
     <tr>

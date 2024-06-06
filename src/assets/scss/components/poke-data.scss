@@ -3,10 +3,11 @@
   table-layout: auto;
   position: relative;
   font-size: #{$labelSize};
+  z-index: 1;
 
   &-head {
     position: sticky;
-    top: 0;
+    top: 30px;
 
     th {
       background-color: #{$tableHeaderBackgroundColor};
@@ -68,5 +69,32 @@
     td {
       padding: 8px;
     }
+  }
+}
+
+&-filter {
+  position: sticky;
+  top: 0;
+  background-color: #{$whiteColor};
+  z-index: 2;
+}
+
+&-filter_wrap {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: #{$labelSize};
+
+  label {
+    font-weight: #{$tableHeaderWeight};
+  }
+
+  select {
+    height: 20px;
+    width: 100px;
+    border-radius: 5px;
+    text-align: center;
   }
 }

@@ -5,7 +5,7 @@ export class PokeParams {
   name: string = '';
   generation: number | null = null;
   legendary: number | null = null;
-  type: number | null = null;
+  type: number | null = 0;
 
   constructor(_params: PokeParams | null) {
     if (_params) {

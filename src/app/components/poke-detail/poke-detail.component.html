@@ -1,24 +1,26 @@
 <ng-container *ngIf="pokeItem">
-  <section class="tt-detail">
-    <section class="tt-content_detail">
-      <div class="tt-content_detail-background"></div>
-      <section class="tt-content_detail-content tt-tag">
-        <section class="tt-tag-avatar">
-          <tt-avatar-poke [id]="pokeItem.id" height="200" width="200"></tt-avatar-poke>
-          <h3>{{pokeItem.name}}</h3>
+  <ng-container  *ngIf="visible">
+    <section [class]="detailtCls">
+      <section class="tt-content_detail">
+        <div class="tt-content_detail-background" (click)="visibleDetail(false)"></div>
+        <section class="tt-content_detail-content tt-tag" *ngIf="visible" @detailFloatIn @detailFloatOut>
+          <section class="tt-tag-avatar">
+            <tt-avatar-poke [id]="pokeItem.id" height="200" width="200"></tt-avatar-poke>
+            <h3>{{pokeItem.name}}</h3>
+          </section>
+          <div class="tt-tag-line"></div>
+          <section class="tt-tag-info">
+            <ng-container *ngFor="let info of infos">
+              <div class="tt-tag-info_item">
+                <span>{{info.label | translate}}: </span>
+                <p>{{info.value}}</p>
+              </div>
+            </ng-container>
+          </section>
+          <div class="tt-tag-line"></div>
+          <footer class="tt-tag-footer">{{'@' + currentYear}}</footer>
         </section>
-        <div class="tt-tag-line"></div>
-        <section class="tt-tag-info">
-          <ng-container *ngFor="let info of infos">
-            <div class="tt-tag-info_item">
-              <span>{{info.label | translate}}: </span>
-              <p>{{info.value}}</p>
-            </div>
-          </ng-container>
-        </section>
-        <div class="tt-tag-line"></div>
-        <footer class="tt-tag-footer">{{'@' + currentYear}}</footer>
       </section>
     </section>
-  </section>
+  </ng-container>
 </ng-container>

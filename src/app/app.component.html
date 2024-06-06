@@ -1,9 +1,10 @@
 <tt-page-layout>
   <ng-container body>
-    <tt-poke-data [data]="data.pokeList" (paramsChange)="onChangeParams($event, 'sort')" (detailChange)="onClickPokeItem($event)">
+    <tt-poke-data [data]="data.pokeList" (paramsChange)="onChangeParams($event, 'data')" (detailChange)="onClickPokeItem($event)"
+      [pokeTypes]="data.pokeTypes" [params]="params" [tableHeader]="tableHeader">
     </tt-poke-data>
   </ng-container>
   <ng-container out-side>
-    <tt-poke-detail [pokeItem]="data.detailSelected" [(visible)]="visibleDetail"></tt-poke-detail>
+    <tt-poke-detail [pokeItem]="data.detailSelected" [(visible)]="visibleDetail" (visibleChange)="visibleScrollBody(!$event)"></tt-poke-detail>
   </ng-container>
 </tt-page-layout>

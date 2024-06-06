@@ -6,6 +6,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from '../environments/environment';
 import { APIService } from './services/api.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 export function HTTPLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -15,6 +17,8 @@ export const appConfig: ApplicationConfig = {
     APIService,
     provideRouter(routes),
     importProvidersFrom([
+      BrowserModule,
+      BrowserAnimationsModule,
       HttpClientModule,
       TranslateModule.forRoot({
         defaultLanguage: environment.defaultLang,

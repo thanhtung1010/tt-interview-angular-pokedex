@@ -16,3 +16,8 @@ export interface IPokeItem {
   created_at: string,
   updated_at: string
 }
+
+export interface IPokeType {
+  id: number;
+  name: string;
+}

@@ -1,8 +1,10 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { POKE_DATA_TYPE } from '../../enums/common.enum';
-import { IPokeItem, ITableElement } from '../../interfaces';
+import { IPokeItem, IPokeType, ITableElement } from '../../interfaces';
+import { PokeParams } from '../../models/poke.model';
 import { AvatarPokeComponent } from '../avatar-poke/avatar-poke.component';
 import { SortHeaderComponent } from '../sort-header/sort-header.component';
 
@@ -16,90 +18,25 @@ import { SortHeaderComponent } from '../sort-header/sort-header.component';
     AvatarPokeComponent,
     NgOptimizedImage,
     SortHeaderComponent,
+    FormsModule,
   ]
 })
 export class PokeDataComponent implements OnInit {
   @Input({
     required: true
   }) data: IPokeItem[] = [];
+  @Input({
+    required: true
+  }) pokeTypes: IPokeType[] = [];
+  @Input({
+    required: true
+  }) params: PokeParams = new PokeParams(null);
+  @Input({
+    required: true
+  }) tableHeader: ITableElement<POKE_DATA_TYPE>[] = [];
 
-  @Output() paramsChange: EventEmitter<string> = new EventEmitter();
+  @Output() paramsChange: EventEmitter<PokeParams> = new EventEmitter();
   @Output() detailChange: EventEmitter<IPokeItem> = new EventEmitter();
-
-  tableHeader: ITableElement<POKE_DATA_TYPE>[] = [
-    {
-      field: 'number',
-      title: 'TABLE_HEADER.AVATAR',
-      width: 150,
-      align: 'center',
-      sortOrder: 'asc',
-      showSort: true,
-    },
-    {
-      field: 'name',
-      title: 'TABLE_HEADER.NAME',
-      width: 100,
-      align: 'left',
-      sortOrder: null,
-      showSort: false,
-    },
-    {
-      field: 'total',
-      title: 'TABLE_HEADER.TOTAL',
-      width: 50,
-      align: 'right',
-      sortOrder: null,
-      showSort: true,
-    },
-    {
-      field: 'hp',
-      title: 'TABLE_HEADER.HP',
-      width: 50,
-      align: 'right',
-      sortOrder: null,
-      showSort: true,
-    },
-    {
-      field: 'attack',
-      title: 'TABLE_HEADER.ATTACK',
-      width: 50,
-      align: 'right',
-      sortOrder: null,
-      showSort: true,
-    },
-    {
-      field: 'defense',
-      title: 'TABLE_HEADER.DEFENSE',
-      width: 50,
-      align: 'right',
-      sortOrder: null,
-      showSort: true,
-    },
-    {
-      field: 'sp_atk',
-      title: 'TABLE_HEADER.SP_ATK',
-      width: 50,
-      align: 'right',
-      sortOrder: null,
-      showSort: true,
-    },
-    {
-      field: 'sp_def',
-      title: 'TABLE_HEADER.SP_DEF',
-      width: 50,
-      align: 'right',
-      sortOrder: null,
-      showSort: true,
-    },
-    {
-      field: 'speed',
-      title: 'TABLE_HEADER.SPEED',
-      width: 50,
-      align: 'right',
-      sortOrder: null,
-      showSort: true,
-    },
-  ];
   defaultSortValue: string = 'number';
 
   constructor() { }
@@ -150,15 +87,22 @@ export class PokeDataComponent implements OnInit {
       }
     }
 
-    this.emitParamsChange(_value);
+    this.params.sort = _value;
+    this.emitParamsChange();
+  }
+
+  onSelectType(value: number) {
+    this.params.type = value;
+    this.emitParamsChange();
   }
 
   onClickPokeItem(item: IPokeItem) {
     this.detailChange.emit(item);
   }
 
-  emitParamsChange(val: string) {
-    this.paramsChange.emit(val);
+  emitParamsChange() {
+    this.params = new PokeParams(this.params);
+    this.paramsChange.emit(this.params);
   }
 
 }
