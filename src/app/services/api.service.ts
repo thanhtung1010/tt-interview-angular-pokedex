@@ -15,7 +15,7 @@ export class APIService {
     if (external) {
       return url;
     }
-    return `${environment.API_URL}${url}`;
+    return `${environment.apiURL}${url}`;
   }
 
   setHeader(_customHeader?: any, url?: string) {

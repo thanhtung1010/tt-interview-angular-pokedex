@@ -28,7 +28,7 @@ export class AvatarPokeComponent implements OnInit {
   }
 
   parseAvatarUrl() {
-    const apiUrl = environment.API_URL + POKE_API_URL['GET_SPRITE'].url;
+    const apiUrl = environment.apiURL + POKE_API_URL['GET_SPRITE'].url;
     this.avatarUrl = apiUrl.replace(':id', this.id);
   }
 
