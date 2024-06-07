@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=8080 -o",
-    "build": "ng build --configuration production",
+    "build": "node -r dotenv/config env.conf.js && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

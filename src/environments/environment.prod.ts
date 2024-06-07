@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  defaultLang: '',
-  API_URL: ''
+  defaultLang: 'DEFAULT_LANG',
+  API_URL: 'API_URL'
 }
