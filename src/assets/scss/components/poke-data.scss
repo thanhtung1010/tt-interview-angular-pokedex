@@ -1,5 +1,6 @@
 &-table {
   width: 100%;
+  min-width: 600px;
   table-layout: auto;
   position: relative;
   font-size: #{$labelSize};
@@ -171,5 +172,31 @@
 
   &-fairy {
     background-color: #e9e;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  &-table {
+
+    &-head_content {
+
+      &-icon {
+        padding-right: 5px;
+        padding-left: 25px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  &-table {
+
+    &-head_content {
+
+      &-icon {
+        padding-right: unset;
+        padding-left: 30px;
+      }
+    }
   }
 }

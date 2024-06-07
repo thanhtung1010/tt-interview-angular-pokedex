@@ -78,7 +78,6 @@ export class PokeDetailComponent implements OnInit, OnChanges {
   ];
   currentYear: number = getYear(new Date());
   detailtCls: string = 'tt-detail';
-  absCls: string = 'tt-fixed';
 
   constructor() { }
 
@@ -89,14 +88,14 @@ export class PokeDetailComponent implements OnInit, OnChanges {
     if (changes['pokeItem'] && changes['pokeItem'].currentValue !== null) {
       this.parseInfo();
     }
-    if (changes['visible'] && changes['visible'].currentValue) {
-      const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-      if (scrollPosition === 0) {
-        this.detailtCls = `${this.detailtCls} ${this.absCls}`
-      } else {
-        this.detailtCls = this.detailtCls.replace(this.absCls, '').trim();
-      }
-    }
+    // if (changes['visible'] && changes['visible'].currentValue) {
+    //   const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    //   if (scrollPosition === 0) {
+    //     this.detailtCls = `${this.detailtCls} ${this.absCls}`
+    //   } else {
+    //     this.detailtCls = this.detailtCls.replace(this.absCls, '').trim();
+    //   }
+    // }
   }
 
   parseInfo() {

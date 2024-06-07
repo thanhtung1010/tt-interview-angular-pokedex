@@ -28,3 +28,47 @@
     z-index: inherit;
   }
 }
+
+@media only screen and (max-width: 1000px) {
+  &-page {
+
+    &-header {
+      padding: 10px;
+
+      &-title {
+        font-size: 56px;
+        font-weight: #{$tableHeaderWeight};
+      }
+    }
+
+    &-body {
+      padding: 5px;
+    }
+
+    &-body_content {
+      margin: 10px auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  &-page {
+
+    &-header {
+      padding: 5px;
+
+      &-title {
+        font-size: 42px;
+        font-weight: #{$tableHeaderWeight};
+      }
+    }
+
+    &-body {
+      padding: 5px;
+    }
+
+    &-body_content {
+      margin: 5px auto;
+    }
+  }
+}
