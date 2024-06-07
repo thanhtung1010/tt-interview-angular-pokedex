@@ -23,6 +23,10 @@ import { detailFloatIn, detailFloatOut } from '../../animations';
 })
 export class PokeDetailComponent implements OnInit, OnChanges {
   @Input({required: true}) pokeItem!: IPokeItem | null;
+
+  @Input() loading: boolean = false;
+  @Output() loadingChange: EventEmitter<boolean> = new EventEmitter();
+
   @Input({required: true}) visible: boolean = false;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter();
 
@@ -74,7 +78,7 @@ export class PokeDetailComponent implements OnInit, OnChanges {
   ];
   currentYear: number = getYear(new Date());
   detailtCls: string = 'tt-detail';
-  absCls: string = 'tt-absolute';
+  absCls: string = 'tt-fixed';
 
   constructor() { }
 
@@ -106,6 +110,11 @@ export class PokeDetailComponent implements OnInit, OnChanges {
   visibleDetail(visible: boolean) {
     this.visible = visible;
     this.visibleChange.emit(this.visible);
+  }
+
+  loadingDetail(loading: boolean) {
+    this.loading = loading;
+    this.loadingChange.emit(this.loading);
   }
 
 }

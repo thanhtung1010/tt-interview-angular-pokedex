@@ -46,6 +46,7 @@
   border-radius: 20px;
   background-color: #{$whiteColor};
   padding: 20px;
+  position: relative;
 
   &-avatar {
     text-align: center;
@@ -87,5 +88,15 @@
     color: #{$blackColor};
     font-size: 12px;
     opacity: .8;
+  }
+
+  &-close_btn {
+    position: absolute;
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #E6E6E6;
+    top: 10px;
+    right: 10px;
   }
 }

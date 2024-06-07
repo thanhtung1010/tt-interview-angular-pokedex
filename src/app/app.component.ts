@@ -30,7 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
       last_page: 0,
     },
   };
-
+  loading= {
+    detail: false,
+    data: false
+  }
   tableHeader: ITableElement<POKE_DATA_TYPE>[] = [
     {
       field: 'number',
@@ -108,6 +111,7 @@ export class AppComponent implements OnInit, OnDestroy {
   params: PokeParams = new PokeParams(null);
   visibleDetail: boolean = false;
   hiddenScrollCls: string = 'tt-hidden_scroll';
+  cursorWaitCls: string = 'tt-cursor-wait';
   scrollEvent!: Observable<boolean>;
   unsubscribeNotifier: Subject<number> = new Subject();
 
@@ -156,7 +160,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   parseParam() {
-    let object = Helpers.convertParamsToObject(Helpers.getParamString());
+    let object = Helpers.convertParamsToObject(Helpers.getParamString()) || {};
 
     if (object['sort']) {
       const existIdx = this.tableHeader.findIndex(head => object['sort'].includes(head.field))
@@ -190,6 +194,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   getPokeData(isScroll?: boolean) {
+    this.loading.data = true;
     const _params = this.params.getAPIParams;
     const apiObject: IApiObject = {
       ...POKE_API_URL['GET_DATA'],
@@ -206,6 +211,9 @@ export class AppComponent implements OnInit, OnDestroy {
         if (resp.meta) {
           this.data.meta.last_page = resp.meta?.last_page || 0;
         }
+      },
+      complete: () => {
+        this.loading.data = false;
       }
     });
   }
@@ -216,6 +224,26 @@ export class AppComponent implements OnInit, OnDestroy {
         this.data.pokeTypes = resp.data || [];
       }
     })
+  }
+
+  getPokeDetail(id: string) {
+    this.loadingCursor(true);
+    const apiObject: IApiObject = {
+      ...POKE_API_URL['GET_DETAIL'],
+      url: POKE_API_URL['GET_DETAIL'].url.replace(':id', id),
+    }
+    this.apiService.callApi(apiObject, {}).subscribe({
+      next: resp => {
+        this.data.detailSelected = resp.data || null;
+      },
+      complete: () => {
+        this.loadingCursor(false);
+        if (this.data.detailSelected) {
+          this.visibleDetail = true;
+          this.visibleScrollBody(false);
+        }
+      }
+    });
   }
 
   initFilter() {
@@ -240,10 +268,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.changeUrl(type === 'scroll');
   }
 
-  onClickPokeItem(item: IPokeItem) {
-    this.data.detailSelected = item;
-    this.visibleDetail = true;
-    this.visibleScrollBody(false);
+  onClickPokeItem(id: string) {
+    this.getPokeDetail(id);
   }
 
   visibleScrollBody(scroll: boolean) {
@@ -251,9 +277,23 @@ export class AppComponent implements OnInit, OnDestroy {
     if (bodyElement) {
       const currentCls = bodyElement.className;
       if (scroll) {
-        bodyElement.className = `${currentCls.replace(this.hiddenScrollCls, '')}`;
+        bodyElement.className = `${currentCls.replace(this.hiddenScrollCls, '')}`.trim();
       } else {
         bodyElement.className = `${currentCls} ${this.hiddenScrollCls}`;
+      }
+    } else {
+      console.error('body element does not exist')
+    }
+  }
+
+  loadingCursor(loading: boolean) {
+    const bodyElement = document.querySelector('body');
+    if (bodyElement) {
+      const currentCls = bodyElement.className;
+      if (loading) {
+        bodyElement.className = `${currentCls} ${this.cursorWaitCls}`;
+      } else {
+        bodyElement.className = `${currentCls.replace(this.cursorWaitCls, '')}`.trim();
       }
     } else {
       console.error('body element does not exist')

@@ -7,6 +7,7 @@ import { IPokeItem, IPokeType, ITableElement } from '../../interfaces';
 import { PokeParams } from '../../models/poke.model';
 import { AvatarPokeComponent } from '../avatar-poke/avatar-poke.component';
 import { SortHeaderComponent } from '../sort-header/sort-header.component';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'tt-poke-data',
@@ -19,6 +20,7 @@ import { SortHeaderComponent } from '../sort-header/sort-header.component';
     NgOptimizedImage,
     SortHeaderComponent,
     FormsModule,
+    LoadingComponent,
   ]
 })
 export class PokeDataComponent implements OnInit {
@@ -35,8 +37,11 @@ export class PokeDataComponent implements OnInit {
     required: true
   }) tableHeader: ITableElement<POKE_DATA_TYPE>[] = [];
 
+  @Input() loading: boolean = false;
+  @Output() loadingChange: EventEmitter<boolean> = new EventEmitter();
+
   @Output() paramsChange: EventEmitter<PokeParams> = new EventEmitter();
-  @Output() detailChange: EventEmitter<IPokeItem> = new EventEmitter();
+  @Output() detailChange: EventEmitter<string> = new EventEmitter();
   defaultSortValue: string = 'number';
 
   constructor() { }
@@ -96,13 +101,18 @@ export class PokeDataComponent implements OnInit {
     this.emitParamsChange();
   }
 
-  onClickPokeItem(item: IPokeItem) {
-    this.detailChange.emit(item);
+  onClickPokeItem(id: string) {
+    this.detailChange.emit(id);
   }
 
   emitParamsChange() {
     this.params = new PokeParams(this.params);
     this.paramsChange.emit(this.params);
+  }
+
+  emitLoadingChange(loading: boolean) {
+    this.loading = loading;
+    this.loadingChange.emit(loading);
   }
 
 }

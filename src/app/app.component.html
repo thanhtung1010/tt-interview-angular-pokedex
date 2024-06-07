@@ -1,10 +1,12 @@
 <tt-page-layout>
   <ng-container body>
     <tt-poke-data [data]="data.pokeList" (paramsChange)="onChangeParams($event, 'data')" (detailChange)="onClickPokeItem($event)"
-      [pokeTypes]="data.pokeTypes" [params]="params" [tableHeader]="tableHeader">
+      [pokeTypes]="data.pokeTypes" [params]="params" [tableHeader]="tableHeader" [(loading)]="loading.data">
     </tt-poke-data>
   </ng-container>
   <ng-container out-side>
-    <tt-poke-detail [pokeItem]="data.detailSelected" [(visible)]="visibleDetail" (visibleChange)="visibleScrollBody(!$event)"></tt-poke-detail>
+    <tt-poke-detail [pokeItem]="data.detailSelected" [(visible)]="visibleDetail" (visibleChange)="visibleScrollBody(!$event)"
+      [(loading)]="loading.detail">
+    </tt-poke-detail>
   </ng-container>
 </tt-page-layout>

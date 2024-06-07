@@ -25,7 +25,7 @@
           <tt-avatar-poke [id]="pokeItem.id" [name]="pokeItem.name" [number]="pokeItem.number"></tt-avatar-poke>
         </td>
         <td>
-          <p class="tt-poke-name" (click)="onClickPokeItem(pokeItem)">
+          <p class="tt-poke-name" (click)="onClickPokeItem(pokeItem.id)">
             {{pokeItem.name}}
           </p>
         </td>
@@ -36,6 +36,23 @@
         <td class="tt-align-right">{{pokeItem.sp_atk}}</td>
         <td class="tt-align-right">{{pokeItem.sp_def}}</td>
         <td class="tt-align-right">{{pokeItem.speed}}</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="loading">
+      <tr>
+        <td colspan="9">
+          <tt-loading></tt-loading>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="9">
+          <tt-loading></tt-loading>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="9">
+          <tt-loading></tt-loading>
+        </td>
       </tr>
     </ng-container>
   </tbody>
